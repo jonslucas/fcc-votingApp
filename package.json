@@ -5,15 +5,15 @@
   "main": "server.js",
   "scripts": {
     "clean": "rimraf dist",
-    "build:css": "node-sass client/css/main.scss | cssmin > ./dist/main.min.css",
+    "build:css": "node-sass ./client/css/main.scss | cssmin > ./dist/main.min.css",
     "watch:css": "watch 'npm run build:css' client/css/",
-    "prebuild:js": "eslint **.js",
+    "lint:init": "eslint --init",
+    "lint:js": "eslint **.js",
     "build:js": "webpack",
     "watch:js": "watch 'npm run build:js' client/js/ components/ redux/",
     "build": "npm run clean && npm run build:js && npm run build:css",
     "watch": "parallelshell 'npm run watch:js' 'npm run watch:css'",
-    "serve": "parallelshell 'npm run watch' 'npm start' ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "parallelshell 'npm run watch' 'npm start' "
   },
   "author": "Jon Lucas",
   "license": "MIT",
@@ -26,6 +26,7 @@
     "redux": "^3.3.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.5.1",
     "babel-core": "^6.5.1",
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.5.0",
